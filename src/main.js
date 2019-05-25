@@ -5,7 +5,10 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import queryString from 'query-string'
+import VueStar from 'vue-star'
+import {store} from './store'
 
+Vue.component('VueStar', VueStar)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(queryString)
@@ -14,6 +17,7 @@ new Vue({
   el: '#app',
   queryString,
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

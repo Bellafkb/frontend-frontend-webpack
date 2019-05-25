@@ -6,15 +6,15 @@ import AuthComment from '@/components/AuthComment'
 Vue.use(Router)
 
 export default new Router({
-  //mode: 'history',
+  mode: 'history',
   routes: [
     {
-      path: '/comment/:id',
+      path: '/upsweep/comment/:id',
       name: 'Comment',
       component: Comment
     },
     {
-      path: '/oauthcomment/:id',
+      path: '/upsweep/oauthcomment/:id',
       name: 'AuthComment',
       component: AuthComment
     }
