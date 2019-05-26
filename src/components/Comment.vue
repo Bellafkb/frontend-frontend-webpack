@@ -5,7 +5,6 @@
         <VcABox title="Comments" :first="true">
           <el-card>
             <el-form :model="newComment">
-              
               <el-row type="flex" class="row-bg">
                 <el-col :span="1">
                   <img src="https://img.icons8.com/dotty/80/000000/login-as-user.png">
@@ -15,7 +14,7 @@
                     <span class="userName">{{currentSession}}</span>
                   </el-row>
                   <el-row>
-                    <el-input type="textarea" placeholder="input comment" v-model="newComment.text"></el-input>
+                    <el-input type="textarea" placeholder="input comment" v-model="newComment.text" :autosize="{ minRows: 3, maxRows: 6}"></el-input>
                   </el-row>
                 </el-col>
               </el-row>
@@ -68,36 +67,35 @@
                             class="like-button"
                             type="primary"
                           >
-                              <input
+                            <input
                               type="image"
-                                class="heart"
-                                :id="comment._id"
-                                src="https://img.icons8.com/office/32/000000/hearts.png"
-                                @click.prevent="dislikeButtonHandler(comment)"
-                              >
+                              class="heart"
+                              :id="comment._id"
+                              src="https://img.icons8.com/office/32/000000/hearts.png"
+                              @click.prevent="dislikeButtonHandler(comment)"
+                            >
                           </el-badge>
                           <el-badge
-                                class="like-button"
-
+                            class="like-button"
                             :value="comment._votes.length"
                             v-else-if="!isLiked(comment._votes) && comment._votes.length!==0"
                           >
-                              <input
-                              type="image"
-                                :id="comment._id"
-                                @click.prevent="likeButtonHandler($event)"
-                                src="https://img.icons8.com/ios/34/000000/hearts.png"
-                              >
-                          </el-badge>
                             <input
                               type="image"
                               :id="comment._id"
-                              v-else
                               @click.prevent="likeButtonHandler($event)"
-                              class="like-button"
                               src="https://img.icons8.com/ios/34/000000/hearts.png"
                             >
-                        </div>                        
+                          </el-badge>
+                          <input
+                            type="image"
+                            :id="comment._id"
+                            v-else
+                            @click.prevent="likeButtonHandler($event)"
+                            class="like-button"
+                            src="https://img.icons8.com/ios/34/000000/hearts.png"
+                          >
+                        </div>
                       </el-form>
                     </el-col>
                   </el-row>
@@ -196,9 +194,9 @@ export default {
         .post("http://localhost/api/vote", this.vote)
         .then(resp => {
           this.$store.dispatch(
-          "GET_COMMENTS_BY_POOLEVENT_ID",
-          this.$route.params.id
-        );
+            "GET_COMMENTS_BY_POOLEVENT_ID",
+            this.$route.params.id
+          );
         })
         .catch(err => {});
     },
